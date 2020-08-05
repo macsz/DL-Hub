@@ -39,14 +39,18 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_4.8.3-Linux
     /bin/bash ~/miniconda.sh -b -p /opt/conda && \
     rm ~/miniconda.sh && \
     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
-    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    /opt/conda/condabin/conda clean -ay
+
 
 RUN conda create -n dl python=3.6.9 --no-default-packages && \
     echo "conda activate dl" >> ~/.bashrc
 RUN conda install -n dl tensorflow=2.2.0 scipy=1.4.1 pandas=1.0.5 pandas-datareader=0.9.0 pandas-profiling=1.4.1  && \
-    conda install -n dl pytorch=1.6.0 torchvision=0.7.0 torchtext=0.7.0 cpuonly -c pytorch
+    conda install -n dl pytorch=1.6.0 torchvision=0.7.0 torchtext=0.7.0 cpuonly -c pytorch && \
+    conda clean -ay
 
 COPY requirements.txt /root/
 
 RUN /opt/conda/envs/dl/bin/pip install -r /root/requirements.txt && \
-    rm -Rf /root/.cache/pip
+    rm -Rf /root/.cache/pip && \
+    conda clean -ay
