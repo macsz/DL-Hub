@@ -54,3 +54,6 @@ COPY requirements.txt /root/
 RUN /opt/conda/envs/dl/bin/pip install -r /root/requirements.txt && \
     rm -Rf /root/.cache/pip && \
     conda clean -ay
+
+RUN mkdir -p /notebooks/
+WORKDIR /notebooks/
