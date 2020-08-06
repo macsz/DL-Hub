@@ -16,7 +16,7 @@ rm -f students.txt
 
 for i in $(seq 1 $NUM);
 do
-    USER=$(printf "%03d" $i)
+    USER=$(printf "student_%03d" $i)
     PASS=$(getPswd);
     echo $USER:$PASS | tee -a students.txt
 done;
