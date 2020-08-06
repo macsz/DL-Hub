@@ -1,1 +1,1 @@
-test:pass
+student:pass

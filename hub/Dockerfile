@@ -30,6 +30,7 @@ ADD startup.sh /hub/
 # It's OK to add these files when building as long as this image is not being pushed
 # to public Docker Hub.
 ADD students.txt /hub/
+ADD speakers.txt /hub/
 RUN chmod -R og-rwx /hub/
 
 CMD ["bash", "/hub/startup.sh"]
