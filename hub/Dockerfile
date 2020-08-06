@@ -7,6 +7,7 @@ ARG http_proxy
 ARG https_proxy
 ARG no_proxy
 ARG socks_proxy
+ARG domain
 
 ENV all_proxy $all_proxy
 ENV ftp_proxy $ftp_proxy
@@ -16,7 +17,7 @@ ENV no_proxy $no_proxy
 ENV socks_proxy $socks_proxy
 
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
-    apt-get install -y nodejs && \
+    apt-get install -y nodejs apache2 && \
     npm install -g configurable-http-proxy && \
     /opt/conda/envs/dl/bin/pip install jupyterhub notebook && \
     mkdir /etc/jupyterhub/
@@ -38,5 +39,9 @@ RUN chmod -R og-rwx /hub/
 
 ADD fullchain.pem /root/
 ADD privkey.pem /root/
+
+ADD 000-default.conf /root/000-default.conf
+RUN sed "s/DOMAIN/${domain}/g" /root/000-default.conf > /etc/apache2/sites-enabled/000-default.conf && \
+    rm -f /root/000-default.conf
 
 CMD ["bash", "/hub/startup.sh"]
