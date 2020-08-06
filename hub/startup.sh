@@ -18,6 +18,7 @@ function addStudents {
     cp /root/.bashrc $HOME_DIR/.bashrc;
 
     chown -R $USER:$USER $HOME_DIR;
+    chmod og-wrx $HOME_DIR;
     usermod -a -G students $USER;
     printf "done.\n"
   done;
@@ -38,6 +39,7 @@ function addSpeakers {
     cp /root/.bashrc $HOME_DIR/.bashrc;
 
     chown -R $USER:$USER $HOME_DIR;
+    chmod og-wrx $HOME_DIR;
     usermod -a -G speakers $USER;
     printf "done.\n"
   done;
