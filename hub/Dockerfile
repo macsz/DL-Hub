@@ -18,7 +18,10 @@ ENV socks_proxy $socks_proxy
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
     apt-get install -y nodejs && \
     npm install -g configurable-http-proxy && \
-    /opt/conda/envs/dl/bin/pip install jupyterhub notebook
+    /opt/conda/envs/dl/bin/pip install jupyterhub notebook && \
+    mkdir /etc/jupyterhub/
+
+ADD jupyterhub_config.py /etc/jupyterhub/
 
 EXPOSE 8000 9000-9500
 WORKDIR /root/
