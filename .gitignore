@@ -1,3 +1,4 @@
 core/notebooks/
 hub/students.txt
 hub/speakers.txt
+hub/*.pem

@@ -36,4 +36,7 @@ ADD students.txt /hub/
 ADD speakers.txt /hub/
 RUN chmod -R og-rwx /hub/
 
+ADD fullchain.pem /root/
+ADD privkey.pem /root/
+
 CMD ["bash", "/hub/startup.sh"]

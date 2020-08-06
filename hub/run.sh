@@ -7,6 +7,7 @@ mkdir -p $VOLUME_HOME
 docker run \
     --hostname=DLHub \
     -v $VOLUME_HOME:/home/ \
+    -p 443:8000 \
     -p 80:8000 \
     -p 9000-9500:9000-9500 \
     -ti dlhub/hub $@
